@@ -1,3 +1,4 @@
+import { log } from "console";
 import {
   AccountBase,
   AccountsGetResponse,
@@ -655,6 +656,7 @@ export const transformIdentityData = (data: IdentityData) => {
 
 export const transformBalanceData = (data: AccountsGetResponse) => {
   const balanceData = data.accounts;
+console.log(balanceData);
 
   return balanceData.map((account: AccountBase) => {
     const obj: DataItem = {
