@@ -9,9 +9,10 @@ import { Products as PlaidProducts } from "plaid";
 const App = () => {
   const { linkSuccess, isPaymentInitiation, itemId, dispatch } =
     useContext(Context);
+    
 const API_BASE =
   process.env.NODE_ENV === "production"
-    ? process.env.REACT_APP_API_HOST
+    ? "https://quickstart-1.onrender.com"
     : "http://127.0.0.1:8000";
 
   const getInfo = useCallback(async () => {
