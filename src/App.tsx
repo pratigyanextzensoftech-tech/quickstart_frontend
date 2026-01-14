@@ -4,16 +4,19 @@ import Header from "./Components/Headers";
 import Products from "./Components/ProductTypes/Products";
 import Items from "./Components/ProductTypes/Items";
 import Context from "./Context";
-
 import styles from "./App.module.scss";
 import { Products as PlaidProducts } from "plaid";
 
 const App = () => {
   const { linkSuccess, isPaymentInitiation, itemId, dispatch } =
     useContext(Context);
+const API_BASE =
+  process.env.NODE_ENV === "production"
+    ? process.env.REACT_APP_API_URL
+    : "http://127.0.0.1:8000";
 
   const getInfo = useCallback(async () => {
-    const response = await fetch("/api/info", { method: "POST" });
+    const response = await fetch(`${API_BASE}/api/info`, { method: "POST" });
     if (!response.ok) {
       dispatch({ type: "SET_STATE", state: { backend: false } });
       return { paymentInitiation: false };
@@ -43,7 +46,7 @@ const App = () => {
   }, [dispatch]);
 
   const generateUserToken = useCallback(async () => {
-    const response = await fetch("api/create_user_token", { method: "POST" });
+    const response = await fetch(`${API_BASE}api/create_user_token`, { method: "POST" });
     if (!response.ok) {
       dispatch({ type: "SET_STATE", state: { userToken: null, userId: null } });
       return;
@@ -75,8 +78,8 @@ const App = () => {
     async (isPaymentInitiation: boolean) => {
       // Link tokens for 'payment_initiation' use a different creation flow in your backend.
       const path = isPaymentInitiation
-        ? "/api/create_link_token_for_payment"
-        : "/api/create_link_token";
+        ? `${API_BASE}/api/create_link_token_for_payment`
+        : `${API_BASE}/api/create_link_token`;
       const response = await fetch(path, {
         method: "POST",
       });
