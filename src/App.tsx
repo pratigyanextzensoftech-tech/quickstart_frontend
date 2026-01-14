@@ -6,7 +6,6 @@ import Items from "./Components/ProductTypes/Items";
 import Context from "./Context";
 import styles from "./App.module.scss";
 import { Products as PlaidProducts } from "plaid";
-
 const App = () => {
   const { linkSuccess, isPaymentInitiation, itemId, dispatch } =
     useContext(Context);
@@ -46,7 +45,7 @@ const API_BASE =
   }, [dispatch]);
 
   const generateUserToken = useCallback(async () => {
-    const response = await fetch(`${API_BASE}api/create_user_token`, { method: "POST" });
+    const response = await fetch(`${API_BASE}/api/create_user_token`, { method: "POST" });
     if (!response.ok) {
       dispatch({ type: "SET_STATE", state: { userToken: null, userId: null } });
       return;
