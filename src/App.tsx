@@ -5,7 +5,6 @@ import Products from "./Components/ProductTypes/Products";
 import Items from "./Components/ProductTypes/Items";
 import Context from "./Context";
 import styles from "./App.module.scss";
-import { Products as PlaidProducts } from "plaid";
 const App = () => {
   const { linkSuccess, isPaymentInitiation, itemId, dispatch } =
     useContext(Context);
@@ -43,7 +42,7 @@ const API_BASE =
       },
     });
     return { paymentInitiation, isUserTokenFlow };
-  }, [dispatch]);
+  }, [dispatch,API_BASE]);
 
   const generateUserToken = useCallback(async () => {
     const response = await fetch(`${API_BASE}/api/create_user_token`, { method: "POST" });
@@ -72,7 +71,7 @@ const API_BASE =
       });
       return data.user_token || data.user_id;
     }
-  }, [dispatch]);
+  }, [dispatch,API_BASE]);
 
   const generateToken = useCallback(
     async (isPaymentInitiation: boolean) => {
@@ -104,7 +103,7 @@ const API_BASE =
       // Save the link_token to be used later in the Oauth flow.
       localStorage.setItem("link_token", data.link_token);
     },
-    [dispatch]
+    [dispatch,API_BASE]
   );
 
   useEffect(() => {
