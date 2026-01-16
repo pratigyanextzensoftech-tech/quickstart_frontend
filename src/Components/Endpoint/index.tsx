@@ -27,10 +27,10 @@ const Endpoint = (props: Props) => {
   const getData = async () => {
       const API_BASE =
   process.env.NODE_ENV === "production"
-    ? "https://quickstart-1.onrender.com"
+    ? "https://account.ntafleetsolutions.com"
     : "http://127.0.0.1:8000";
     setIsLoading(true);
-    const response = await fetch(`https://quickstart-1.onrender.com/api/${props.endpoint}`, { method: "GET" });
+    const response = await fetch(`${API_BASE}/api/${props.endpoint}`, { method: "GET" });
     const data = await response.json();
     if (data.error != null) {
       setError(data.error);
