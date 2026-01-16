@@ -5,17 +5,18 @@ import Products from "./Components/ProductTypes/Products";
 import Items from "./Components/ProductTypes/Items";
 import Context from "./Context";
 import styles from "./App.module.scss";
+import { Products as PlaidProducts } from "plaid";
 const App = () => {
   const { linkSuccess, isPaymentInitiation, itemId, dispatch } =
     useContext(Context);
     
-// const API_BASE =
-//   process.env.NODE_ENV === "production"
-//     ? "https://quickstart-1.onrender.com"
-//     : "http://127.0.0.1:8000";
+const API_BASE =
+  process.env.NODE_ENV === "production"
+    ? "https://quickstart-1.onrender.com"
+    : "http://127.0.0.1:8000";
 
   const getInfo = useCallback(async () => {
-    const response = await fetch(`https://quickstart-1.onrender.com/api/info`, { method: "POST" });
+    const response = await fetch(`${API_BASE}/api/info`, { method: "POST" });
     if (!response.ok) {
       dispatch({ type: "SET_STATE", state: { backend: false } });
       return { paymentInitiation: false };
