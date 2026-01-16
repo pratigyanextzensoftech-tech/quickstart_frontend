@@ -42,7 +42,7 @@ const API_BASE =
       },
     });
     return { paymentInitiation, isUserTokenFlow };
-  }, [dispatch,API_BASE]);
+  }, [dispatch]);
 
   const generateUserToken = useCallback(async () => {
     const response = await fetch(`${API_BASE}/api/create_user_token`, { method: "POST" });
@@ -71,7 +71,7 @@ const API_BASE =
       });
       return data.user_token || data.user_id;
     }
-  }, [dispatch,API_BASE]);
+  }, [dispatch]);
 
   const generateToken = useCallback(
     async (isPaymentInitiation: boolean) => {
@@ -103,7 +103,7 @@ const API_BASE =
       // Save the link_token to be used later in the Oauth flow.
       localStorage.setItem("link_token", data.link_token);
     },
-    [dispatch,API_BASE]
+    [dispatch]
   );
 
   useEffect(() => {
