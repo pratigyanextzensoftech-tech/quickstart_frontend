@@ -5,12 +5,11 @@ import Products from "./Components/ProductTypes/Products";
 import Items from "./Components/ProductTypes/Items";
 import Context from "./Context";
 import styles from "./App.module.scss";
-import { Products as PlaidProducts } from "plaid";
 const App = () => {
   const { linkSuccess, isPaymentInitiation, itemId, dispatch } =
     useContext(Context);
     
-const API_BASE =
+  const API_BASE =
   process.env.NODE_ENV === "production"
     ? "https://quickstart-1.onrender.com"
     : "http://127.0.0.1:8000";
