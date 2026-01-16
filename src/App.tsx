@@ -11,7 +11,7 @@ const App = () => {
     
   const API_BASE =
   process.env.NODE_ENV === "production"
-    ? "https://account.ntafleetsolutions.com"
+    ? "https://account.ntafleetsolutions.com/api"
     : "http://127.0.0.1:8000";
 
   const getInfo = useCallback(async () => {
